@@ -1,8 +1,8 @@
-/* * {
-  border: 1px solid black;
-} */
+
+
 html {
   font-family: "Montserrat", sans-serif;
+  height: 70vh;
 }
 
 body::before {
@@ -63,6 +63,7 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
+  outline: none;
 }
 
 

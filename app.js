@@ -9,6 +9,12 @@ document.addEventListener("DOMContentLoaded", () => {
   let score = 0;
   const colors = ["red", "green", "maroon", "blue", "orange"];
 
+  document.addEventListener("keydown", function (event) {
+    if (event.code === "ArrowUp" || event.code === "ArrowDown") {
+      event.preventDefault();
+    }
+  });
+
   const lTetrominoes = [
     [1, 2, width + 1, width * 2 + 1],
     [width, width + 1, width + 2, width * 2 + 2],
