@@ -150,16 +150,32 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     draw();
   }
+  // check if tetorminoes at the edge before rotate
+  function isAtEdge(currentPos, currentTetromino) {
+    return currentTetromino.some((index) => {
+      const pos = currentPos + index;
+      return pos % width === 0 || pos % width === width - 1;
+    });
+  }
+
   // rotate the tetrominoes
   function moveRotate() {
     undraw();
+    const originalRotation = currentRotation;
     currentRotation++;
     if (currentRotation === current.length) {
       currentRotation = 0;
     }
-    current = theTetrominoes[random][currentRotation];
-    draw();
+    const nextTetromino = theTetrominoes[random][currentRotation];
+    if (!isAtEdge(currentPosition, nextTetromino)) {
+      current = nextTetromino;
+      draw();
+    } else {
+      currentRotation = originalRotation;
+      draw();
+    }
   }
+
   // show-up next tetromino in mini-grid display
   const displaySquares = document.querySelectorAll(".mini-grid div");
   const displayWidth = 4;
@@ -220,7 +236,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // game over
   function gameOver() {
     if (current.some((index) => squares[currentPosition + index].classList.contains("taken"))) {
-      scoreDisplay.innerHTML = "end";
+      scoreDisplay.innerHTML = " Game Over";
       clearInterval(timerId);
     }
   }
