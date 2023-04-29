@@ -4,9 +4,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const scoreDisplay = document.querySelector("#score");
   const startBtn = document.querySelector("#start-button");
   const width = 10;
+  let goal = +prompt("What is your goal", 0);
+  let score = 0;
   let nextRandom = 0;
   let timerId;
-  let score = 0;
   const colors = ["red", "green", "maroon", "blue", "orange"];
 
   document.addEventListener("keydown", function (event) {
@@ -14,6 +15,8 @@ document.addEventListener("DOMContentLoaded", () => {
       event.preventDefault();
     }
   });
+
+  document.querySelector("#goal").innerText = goal;
 
   const lTetrominoes = [
     [1, 2, width + 1, width * 2 + 1],
@@ -222,6 +225,13 @@ document.addEventListener("DOMContentLoaded", () => {
       if (row.every((index) => squares[index].classList.contains("taken"))) {
         score += 10;
         scoreDisplay.innerHTML = score;
+        if (score >= 100) {
+          scoreDisplay.innerText = `You got ${score}/100, you can stop now`;
+        } else if (score >= 50) {
+          scoreDisplay.innerText = `You got ${score}/50, you can stop now`;
+        } else if (score >= goal) {
+          scoreDisplay.innerText = `You got ${score}/${goal}, you can stop now`;
+        }
         row.forEach((index) => {
           squares[index].classList.remove("taken");
           squares[index].classList.remove("tetrominoes");

@@ -30,6 +30,9 @@ body::before {
   width: 600px; 
   margin: 0 auto;
 }
+h3 {
+  text-align: center;
+}
 
 
 header {
