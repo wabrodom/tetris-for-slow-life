@@ -15,7 +15,6 @@ document.addEventListener("DOMContentLoaded", () => {
       event.preventDefault();
     }
   });
-
   document.querySelector("#goal").innerText = goal;
 
   const lTetrominoes = [
